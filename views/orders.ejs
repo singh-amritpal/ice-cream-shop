@@ -1,0 +1,74 @@
+<!-- Author: Amritpal Singh-->
+
+<% 
+    const CHOCOLATE_BLIZZARD_PRICE = 7.98;
+    const STRAWBERRY_SUNDAE_PRICE = 5.99;
+    const BLUEBERRY_SHAKE_PRICE = 5.49;
+    const TAX = 13.00;
+%>
+
+<%- include('_layouts/head'); %>
+    <%- include('_layouts/header') %>
+        <%- include('_layouts/nav'); -%>
+            <main class="allOrders">
+                <h1 style="text-align: center; font-weight: bolder;">List of Orders</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Customer Number</th>
+                            <th scope="col" class="number">Blizzards</th>
+                            <th scope="col" class="number">Sundaes</th>
+                            <th scope="col" class="number">Shakes</th>
+                            <th scope="col" class="currency">Sub Total</th>
+                            <th scope="col" class="currency">Tax</th>
+                            <th scope="col" class="currency">Total</th>
+                            <th scope="col" class="manage">Manage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var order of orders){ %>
+                            <tr>
+                                <td>
+                                    <%= order.customerName %>
+                                </td>
+                                <td>
+                                    <%= order.customerNumber %>
+                                </td>
+                                <td class="number">
+                                    <%= order.blizzards %>
+                                </td>
+                                <td class="number">
+                                    <%= order.sundaes %>
+                                </td>
+                                <td class="number">
+                                    <%= order.shakes %>
+                                </td>
+                                <td class="currency">
+                                    $<%- ((order.blizzards * CHOCOLATE_BLIZZARD_PRICE) + 
+                                    (order.sundaes * STRAWBERRY_SUNDAE_PRICE) + 
+                                    (order.shakes * BLUEBERRY_SHAKE_PRICE)).toFixed(2) %>
+                                </td>
+                                <td class="currency">
+                                    $<%- (((order.blizzards * CHOCOLATE_BLIZZARD_PRICE) + 
+                                    (order.sundaes * STRAWBERRY_SUNDAE_PRICE) + 
+                                    (order.shakes * BLUEBERRY_SHAKE_PRICE))*TAX/100).toFixed(2) %>
+                                </td>
+                                <td class="currency">
+                                    $<%- (((
+                                            (order.blizzards * CHOCOLATE_BLIZZARD_PRICE) + 
+                                            (order.sundaes * STRAWBERRY_SUNDAE_PRICE) + 
+                                            (order.shakes * BLUEBERRY_SHAKE_PRICE))*(TAX/100)) 
+                                            + 
+                                            (((order.blizzards * CHOCOLATE_BLIZZARD_PRICE) + 
+                                            (order.sundaes * STRAWBERRY_SUNDAE_PRICE) + 
+                                            (order.shakes * BLUEBERRY_SHAKE_PRICE)))).toFixed(2)%>
+                                </td>   
+                                <td class="manage"><a href="/orderDelete/<%= order._id %>">Delete</a></td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </main>
+
+            <%- include('_layouts/footer'); -%>

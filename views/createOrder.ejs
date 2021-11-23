@@ -1,0 +1,89 @@
+<!--Auhtor: Amritpal Singh-->
+
+<% 
+    var customerNameError = '';
+    var customerNumberError = '';
+    var blizzardsError = '';
+    var sundaesError = '';
+    var shakesError = '';  
+    
+    if(typeof(errors) !='undefined' )
+    { 
+        for (var error of errors)
+        { 
+            switch(error.param){
+                case 'customerName':    customerNameError = error.msg;
+                                        break;
+                case 'customerNumber':  customerNumberError = error.msg;
+                                        break;
+                case 'blizzards':       blizzardsError = error.msg;
+                                        break;
+                case 'sundaes':         sundaesError = error.msg;
+                                        break;
+                case 'shakes':          shakesError = error.msg;
+                                        break;        
+            }
+        } 
+    } 
+%>
+
+<%- include('_layouts/head'); -%>
+    <%- include('_layouts/header'); -%>
+        <%- include('_layouts/homenav'); -%>
+            <main>
+                <form class="myForm" method="POST" action="/process">
+                    <div class="row mb-3">
+                        <label for="customerName" class="col-sm-4 col-form-label">Customer Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="customerName" name="customerName" placeholder="First Last">
+                        </div>
+                        <p class="error">
+                            <%= customerNameError %>
+                        </p>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="customerNumber" class="col-sm-4 col-form-label">Customer Number</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="customerNumber" name="customerNumber" placeholder="12-AB-123">
+                        </div>
+                        <p class="error">
+                            <%= customerNumberError %>
+                        </p>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="blizzards" class="col-sm-4 col-form-label">Blizzards</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="blizzards" name="blizzards" placeholder="0">
+                        </div>
+                        <p class="error">
+                            <%= blizzardsError %>
+                        </p>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="sundaes" class="col-sm-4 col-form-label">Sundaes</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="sundaes" name="sundaes" placeholder="0">
+                        </div>
+                        <p class="error">
+                            <%= sundaesError %>
+                        </p>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="shakes" class="col-sm-4 col-form-label">Shakes</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="shakes" name="shakes" placeholder="0">
+                        </div>
+                        <p class="error">
+                            <%= shakesError %>
+                        </p>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Create Order</button>
+                    </div>
+                </form>
+            </main>
+        <%- include('_layouts/footer'); -%>

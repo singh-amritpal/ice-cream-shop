@@ -1,0 +1,119 @@
+<!-- Author: Amritpal Singh-->
+<%- include('_layouts/head'); %>
+
+    <%- include('_layouts/header') %>
+        <%- include('_layouts/homenav'); -%>
+            <main class="myReceipt">
+                <div>
+                    <!-- Start Customer Details Section -->
+                    <div>
+                        <table class="table">
+                            <!-- Start Customer Name -->
+                            <tr>
+                                <th scope="row">Customer Name</th>
+                                <td>
+                                    <%= customerName %>
+                                </td>
+                            </tr>
+                            <!-- End Customer Name -->
+                            <!-- Start Customer Number -->
+                            <tr>
+                                <th scope="row">Customer Number</th>
+                                <td>
+                                    <%= customerNumber %>
+                                </td>
+                            </tr>
+                            <!-- End Customer Number -->
+                        </table>
+                    </div>
+                    <!-- End Customer Details Section  -->
+                    <!-- Start Receipt Table -->
+                    <table class="table">
+                        <!-- Start Receipt Headers -->
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col" style="text-align: right;">Unit Price</th>
+                                <th scope="col" style="text-align: right;">Total Price</th>
+                            </tr>
+                        </thead>
+                        <!-- End Receipt Headers -->
+                        <!-- Start Receipt Body -->
+                        <tbody>
+                            <!-- Start Receipt_Item 1 -->
+                            <% if(typeof(blizzards) !='undefined' && blizzards> 0){%>
+                                <tr name="receiptblizzards">
+                                    <th scope="row">Chocolate Blizzard</th>
+                                    <td id="blizzardsQuantity" style="text-align: center;">
+                                        <%= blizzards %>
+                                    </td>
+                                    <td id="blizzardsUnitPrice" style="text-align: right;">$<%= CHOCOLATE_BLIZZARD_PRICE.toFixed(2)%></td>
+                                    <td id="blizzardsTotalPrice" style="text-align: right;">$<%=
+                                            blizzardsPurchasePrice.toFixed(2) %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                            <!-- End Receipt_Item 1 -->
+                            <!-- Start Receipt_Item 2 -->
+                            <% if(typeof(sundaes) !='undefined' && sundaes> 0){%>
+                                <tr id="receiptsundaes" name="receiptsundaes">
+                                    <th scope="row">Strawberry Sundae</th>
+                                    <td id="sundaesQuantity" style="text-align: center;">
+                                        <%= sundaes %>
+                                    </td>
+                                    <td id="sundaesUnitPrice" style="text-align: right;">$<%= STRAWBERRY_SUNDAE_PRICE%></td>
+                                    <td id="sundaesTotalPrice" style="text-align: right;">$<%=
+                                            sundaesPurchasePrice.toFixed(2) %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                            <!-- End Receipt_Item 2 -->
+                            <!-- Start Receipt_Item 3 -->
+                            <% if(typeof(shakes) !='undefined' && shakes> 0){%>
+                                <tr id="receiptshakess" name="receiptshakess">
+                                    <th scope="row">Blueberry Shake</th>
+                                    <td id="shakessQuantity" style="text-align: center;">
+                                        <%= shakes %>
+                                    </td>
+                                    <td id="shakesUnitPrice" style="text-align: right;">$<%= BLUEBERRY_SHAKE_PRICE%></td>
+                                    <td id="shakesTotalPrice" style="text-align: right;">$<%=
+                                            shakesPurchasePrice.toFixed(2) %>
+                                    </td>
+                                </tr>
+                            <% } %>
+                            <!-- End Receipt_Item 3 -->
+                            <!-- Start Sub-Total -->
+                            <tr>
+                                <th scope="row" colspan="3">Sub Total</th>
+                                <td id="subTotal" style="text-align: right;">
+                                    $<%= subTotal.toFixed(2) %>
+                                </td>
+                            </tr>
+                            <!-- End SubTotal -->
+                            <!-- Start Tax Amount -->
+                            <tr>
+                                <th scope="row" colspan="3">Tax Amount @ <%=
+                                        TAX.toFixed(2) %>%</th>
+                                <td id="subTotal" style="text-align: right;">
+                                    $<%= taxAmount.toFixed(2) %>
+                                </td>
+                            </tr>
+                            <!-- End Tax Amount -->
+                            <!-- Start Receipt Total  -->
+                            <tr id="receiptTotal">
+                                <th scope="row" colspan="3">Total</th>
+                                <td id="totalPrice" style="text-align: right;">
+                                    $<%= totalAmount.toFixed(2) %>
+                                </td>
+                            </tr>
+                            <!-- End Receipt Total -->
+                        </tbody>
+                        <!-- End Receipt Body  -->
+                    </table>
+                    <!-- End Receipt Table -->
+                </div>
+                <!-- End Receipt Section -->
+            </main>
+
+        <%- include('_layouts/footer'); %>

@@ -1,0 +1,27 @@
+<!--Auhtor: Amritpal Singh-->
+
+<%- include('_layouts/head'); -%>
+    <%- include('_layouts/header'); -%>
+        <%- include('_layouts/homenav'); -%>
+            <main>
+                <form class="myForm" method="POST" action="/login" style="width: 400px;">
+                    <div class="form-group">
+                        <label for="userLogin">Username</label>
+                        <input type="text" class="form-control" id="userLogin" name="userLogin" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="userPass">Password</label>
+                        <input type="password" class="form-control" id="userPass" name="userPass"
+                            placeholder="Password">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                    <p class="error">
+                        <% if(typeof error !=='undefined' ){ %>
+                            <%= error %>
+                                <% } %>
+                    </p>
+                </form>
+            </main>
+            <%- include('_layouts/footer'); -%>
